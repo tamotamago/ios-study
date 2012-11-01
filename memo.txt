@@ -1,0 +1,9 @@
+
+Master-Detail Application を選択
+StroryBoardとARCをオンにする
+
+ある程度、最初からひな形はできているみたい
+
+JSON Parser or XML Parser
+を入れる。使い方はあまり変わらないだろうから、JSON Parserを使う？
+
