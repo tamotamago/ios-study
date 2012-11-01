@@ -30,6 +30,19 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    
+    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/jp/rss/topfreeapplications/limit=25/json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
+        
+        NSArray *objs = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+
+        NSLog(@"%@", objs);
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning
