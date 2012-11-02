@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Model : NSObject
+@interface Model : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 - (void)addEntry:(NSDictionary *)entry;
 
