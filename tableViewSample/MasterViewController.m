@@ -32,15 +32,13 @@
     self.navigationItem.rightBarButtonItem = addButton;
     
     
-    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/jp/rss/topfreeapplications/limit=25/json"];
+    NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
-        
-        NSArray *objs = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
 
-        NSLog(@"%@", objs);
-        
+        NSDictionary *objs = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@", objs[@"items"][0]);
     }];
     
 }

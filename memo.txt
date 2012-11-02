@@ -32,3 +32,12 @@ GCD使って別スレッドの方が分かりよいかもしれない
 データ型 : NSData
 配列    :  NSArray
 ハッシュ : NSDictioanry
+
+
+itunesのだと、データはとってこれるけどテーブルビューとして楽しくない
+
+FlickrのAPIを使うサンプルだと
+http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1
+みたいなURLで取って来れる
+
+------------------要らない部分の削除------------------
