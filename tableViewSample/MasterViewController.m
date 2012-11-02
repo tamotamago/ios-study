@@ -38,12 +38,8 @@
 
         for (NSDictionary *entry in jsonDict[@"items"]) {
             [_objects addObject:entry];
-            NSLog(@"%d, %d, %@", [jsonDict[@"items"] indexOfObject:entry],  _objects.count, entry[@"title"]);
         }
-//        NSLog(@"%@", jsonDict);
-//        NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"error : %@", er);
-        NSLog(@"%d", _objects.count);
         [(UITableView *)self.view reloadData];
     }];
 
