@@ -34,7 +34,8 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
 
         NSError *er = nil;
-        id jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&er];
+        id jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&er];
+
         for (NSDictionary *entry in jsonDict[@"items"]) {
             [_objects addObject:entry];
             NSLog(@"%d, %d, %@", [jsonDict[@"items"] indexOfObject:entry],  _objects.count, entry[@"title"]);
