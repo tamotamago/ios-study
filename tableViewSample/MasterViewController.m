@@ -25,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _objects = [NSMutableArray array];
 	// Do any additional setup after loading the view, typically from a nib.    
     
     NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
@@ -32,10 +33,19 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
 
-        NSDictionary *objs = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@", objs[@"items"][0]);
+        NSError *er = nil;
+        id jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&er];
+        for (NSDictionary *entry in jsonDict[@"items"]) {
+            [_objects addObject:entry];
+            NSLog(@"%d, %d, %@", [jsonDict[@"items"] indexOfObject:entry],  _objects.count, entry[@"title"]);
+        }
+//        NSLog(@"%@", jsonDict);
+//        NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"error : %@", er);
+        NSLog(@"%d", _objects.count);
+        [(UITableView *)self.view reloadData];
     }];
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,9 +70,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    cell.textLabel.text = _objects[indexPath.row][@"title"];
     return cell;
 }
 
