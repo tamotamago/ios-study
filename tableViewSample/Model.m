@@ -38,6 +38,38 @@
     return _array.count;
 }
 
+- (void)fetchData
+{
+    NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
+
+        if (error) {
+            [self.delegate Model:self didFinishLoadingWithError:error];
+            return ;
+        }
+
+        NSError *jsonError = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+
+        for (NSDictionary *entry in json[@"items"]) {
+            [_array addObject:entry];
+        }
+
+        if (jsonError) {
+            NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        }
+
+        [self.delegate Model:self didFinishLoadingWithError:jsonError];
+
+    }];
+
+
+}
+
+
 #pragma mark tableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

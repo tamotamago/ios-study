@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
-#import "Model.h"
+
 @interface MasterViewController () {
     Model *_model;
 }
@@ -26,26 +26,10 @@
 {
     [super viewDidLoad];
     _model = [[Model alloc] init];
+    _model.delegate = self;
     [(UITableView *)self.view setDelegate:_model];
     [(UITableView *)self.view setDataSource:_model];
-
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
-
-        NSError *er = nil;
-        id jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&er];
-
-        for (NSDictionary *entry in jsonDict[@"items"]) {
-            [_model addEntry:entry];
-        }
-        NSLog(@"error : %@", er);
-        [(UITableView *)self.view reloadData];
-    }];
-
+    [_model fetchData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +47,16 @@
         NSDictionary *object = [_model entryAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
+}
+
+- (void)Model:(Model *)model didFinishLoadingWithError:(NSError *)error
+{
+    if (error) {
+        NSLog(@"%@",error);
+        return;
+    }
+
+    [self.tableView reloadData];
 }
 
 @end

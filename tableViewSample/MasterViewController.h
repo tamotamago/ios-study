@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Model.h"
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <ModelDelegate>
 
 @end
