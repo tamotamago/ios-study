@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5455B7D21643701900B71E3F /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455B7D11643701900B71E3F /* Model.m */; };
 		9A8A5B2F1642B59600688FCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8A5B2E1642B59600688FCF /* UIKit.framework */; };
 		9A8A5B311642B59600688FCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8A5B301642B59600688FCF /* Foundation.framework */; };
 		9A8A5B331642B59600688FCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8A5B321642B59600688FCF /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5455B7D01643701900B71E3F /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		5455B7D11643701900B71E3F /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		9A8A5B2A1642B59600688FCF /* tableViewSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tableViewSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8A5B2E1642B59600688FCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A8A5B301642B59600688FCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,6 +94,8 @@
 				9A8A5B461642B59600688FCF /* MainStoryboard.storyboard */,
 				9A8A5B491642B59600688FCF /* MasterViewController.h */,
 				9A8A5B4A1642B59600688FCF /* MasterViewController.m */,
+				5455B7D01643701900B71E3F /* Model.h */,
+				5455B7D11643701900B71E3F /* Model.m */,
 				9A8A5B4C1642B59600688FCF /* DetailViewController.h */,
 				9A8A5B4D1642B59600688FCF /* DetailViewController.m */,
 				9A8A5B351642B59600688FCF /* Supporting Files */,
@@ -181,6 +186,7 @@
 				9A8A5B3F1642B59600688FCF /* AppDelegate.m in Sources */,
 				9A8A5B4B1642B59600688FCF /* MasterViewController.m in Sources */,
 				9A8A5B4E1642B59600688FCF /* DetailViewController.m in Sources */,
+				5455B7D21643701900B71E3F /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +303,7 @@
 				9A8A5B531642B59600688FCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

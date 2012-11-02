@@ -9,9 +9,9 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
-
+#import "Model.h"
 @interface MasterViewController () {
-    NSMutableArray *_objects;
+    Model *_model;
 }
 @end
 
@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _objects = [NSMutableArray array];
+    _model = [[Model alloc] init];
 	// Do any additional setup after loading the view, typically from a nib.    
     
     NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
@@ -37,7 +37,7 @@
         id jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&er];
 
         for (NSDictionary *entry in jsonDict[@"items"]) {
-            [_objects addObject:entry];
+            [_model addEntry:entry];
         }
         NSLog(@"error : %@", er);
         [(UITableView *)self.view reloadData];
@@ -61,13 +61,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return _model.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = _objects[indexPath.row][@"title"];
+    cell.textLabel.text = [_model entryAtIndex:indexPath.row][@"title"];
     return cell;
 }
 
@@ -80,7 +80,6 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -107,7 +106,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSDictionary *object = [_model entryAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
