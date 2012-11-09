@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UITableViewController
+#import "Model.h"
+@interface MasterViewController : UITableViewController<ModelDelegate> //ModelDelegateを継承するという宣言
 
 @end

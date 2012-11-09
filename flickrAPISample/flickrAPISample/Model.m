@@ -61,6 +61,7 @@
             [_entries addObject:entry]; // _objectsに各エントリを追加して行く
         }
 
+     // 読み込みが終わったのでdelegateを通じてMasterViewControllerに通知する
      [self.delegate modelDidFinishLoading:self WithError:nil];
 
     }];

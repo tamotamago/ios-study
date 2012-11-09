@@ -10,9 +10,8 @@
 
 #import "DetailViewController.h"
 
-@interface MasterViewController () {
-    NSMutableArray *_objects;
-}
+@interface MasterViewController ()
+@property (nonatomic, strong) Model *model; // Model層へ書き出し
 @end
 
 @implementation MasterViewController
@@ -20,20 +19,21 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.model = [[Model alloc] init]; // Modelの初期化
+    self.model.delegate = self; // delegateによって通知される先をselfに
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 
+    [self.model fetchData]; // modelのデータ読み込みを開始。結果はdelegateで通知される
 
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -46,13 +46,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return self.model.entries.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    NSDictionary *entry = _objects[indexPath.row];
+    NSDictionary *entry = self.model.entries[indexPath.row];
     cell.textLabel.text = entry[@"title"];
     NSLog(@"title = %@", entry[@"title"]);
     return cell;
@@ -62,9 +62,21 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDictionary *object = _objects[indexPath.row];
+        NSDictionary *object = self.model.entries[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
+
+#pragma mark - model delegate
+
+// Modelがデータをfetchしたあと、このメソッドが呼ばれます
+- (void)modelDidFinishLoading:(Model *)model WithError:(NSError *)error
+{
+    if (error) {
+        NSLog(@"error");
+    }
+    [self.tableView reloadData];
+}
+
 
 @end
