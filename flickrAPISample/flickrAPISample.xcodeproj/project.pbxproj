@@ -19,6 +19,7 @@
 		547C8DC7164CE63200FF00E6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 547C8DC5164CE63200FF00E6 /* MainStoryboard.storyboard */; };
 		547C8DCA164CE63200FF00E6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C8DC9164CE63200FF00E6 /* MasterViewController.m */; };
 		547C8DCD164CE63200FF00E6 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C8DCC164CE63200FF00E6 /* DetailViewController.m */; };
+		547C8DE3164D16BA00FF00E6 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C8DE2164D16BA00FF00E6 /* Model.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		547C8DC9164CE63200FF00E6 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		547C8DCB164CE63200FF00E6 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		547C8DCC164CE63200FF00E6 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		547C8DE1164D16BA00FF00E6 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		547C8DE2164D16BA00FF00E6 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				547C8DCB164CE63200FF00E6 /* DetailViewController.h */,
 				547C8DCC164CE63200FF00E6 /* DetailViewController.m */,
 				547C8DB4164CE63100FF00E6 /* Supporting Files */,
+				547C8DE1164D16BA00FF00E6 /* Model.h */,
+				547C8DE2164D16BA00FF00E6 /* Model.m */,
 			);
 			path = flickrAPISample;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				547C8DBE164CE63100FF00E6 /* AppDelegate.m in Sources */,
 				547C8DCA164CE63200FF00E6 /* MasterViewController.m in Sources */,
 				547C8DCD164CE63200FF00E6 /* DetailViewController.m in Sources */,
+				547C8DE3164D16BA00FF00E6 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

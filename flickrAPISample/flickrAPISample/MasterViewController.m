@@ -27,35 +27,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    // データのフェッチここから。起動時のエントリポイント的な場所です
-
-    // URLの文字列からNSURLインスタンスを生成します。
-    NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
-
-    // 次に URLRequestを生成します
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-    // URLRequestを突っ込むためのキューを用意します
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-
-    // 非同期にリクエストを実行します。
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
-
-        NSError *jsonError = nil;
-
-        // APIレスポンスがjsonで返ってくるので、シリアライズする
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        NSLog(@"%@", jsonError);
-
-        _objects = [NSMutableArray array]; // インスタンス変数の初期化
-        NSArray *items = json[@"items"]; // ハッシュの中の各エントリ
-        for (NSDictionary *entry in items) { // for( hoge in fuga ) はいわゆるforeach文
-            [_objects addObject:entry]; // _objectsに各エントリを追加して行く
-        }
-
-        [(UITableView *)self.view reloadData]; // データの準備ができたので、テーブルビューを再表示します
-    }];
-
 
 }
 
