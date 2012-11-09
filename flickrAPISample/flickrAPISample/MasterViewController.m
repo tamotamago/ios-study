@@ -27,6 +27,29 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+    // データのフェッチここから。起動時のエントリポイント的な場所です
+
+    // URLの文字列からNSURLインスタンスを生成します。
+    NSURL *url = [NSURL URLWithString:@"http://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"];
+
+    // 次に URLRequestを生成します
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+    // URLRequestを突っ込むためのキューを用意します
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+
+    // 非同期にリクエストを実行します。
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responce, NSData *data, NSError *error) {
+
+        NSError *jsonError = nil;
+
+        // APIレスポンスがjsonで返ってくるので、シリアライズする
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        NSLog(@"%@", json);
+
+    }];
+
+
 }
 
 - (void)didReceiveMemoryWarning
