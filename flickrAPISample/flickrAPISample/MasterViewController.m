@@ -45,8 +45,15 @@
 
         // APIレスポンスがjsonで返ってくるので、シリアライズする
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        NSLog(@"%@", json);
+        NSLog(@"%@", jsonError);
 
+        _objects = [NSMutableArray array]; // インスタンス変数の初期化
+        NSArray *items = json[@"items"]; // ハッシュの中の各エントリ
+        for (NSDictionary *entry in items) { // for( hoge in fuga ) はいわゆるforeach文
+            [_objects addObject:entry]; // _objectsに各エントリを追加して行く
+        }
+
+        [(UITableView *)self.view reloadData]; // データの準備ができたので、テーブルビューを再表示します
     }];
 
 
@@ -74,7 +81,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
+    NSDictionary *entry = _objects[indexPath.row];
+    cell.textLabel.text = entry[@"title"];
+    NSLog(@"title = %@", entry[@"title"]);
     return cell;
 }
 
