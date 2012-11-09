@@ -1,3 +1,3 @@
-tableViewSample.xcodeproj/project.xcworkspace/*
-tableViewSample.xcodeproj/xcuserdata/*
+*.xcodeproj/project.xcworkspace/*
+*.xcodeproj/xcuserdata/*
 .DS_Store
