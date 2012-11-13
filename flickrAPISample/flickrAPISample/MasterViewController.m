@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
+#import "CustomCell.h"
 
 @interface MasterViewController ()
 @property (nonatomic, strong) Model *model; // Model層へ書き出し
@@ -51,10 +52,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell" forIndexPath:indexPath];
     NSDictionary *entry = self.model.entries[indexPath.row];
-    cell.textLabel.text = entry[@"title"];
-    NSLog(@"title = %@", entry[@"title"]);
+    ((CustomCell*)cell).title = entry[@"title"];
+    ((CustomCell*)cell).imageURLString = entry[@"media"][@"m"];
     return cell;
 }
 

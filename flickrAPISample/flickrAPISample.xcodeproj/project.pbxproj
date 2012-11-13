@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A89062116520B6900709BBB /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89062016520B6900709BBB /* CustomCell.m */; };
 		547C8DAE164CE63100FF00E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C8DAD164CE63100FF00E6 /* UIKit.framework */; };
 		547C8DB0164CE63100FF00E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C8DAF164CE63100FF00E6 /* Foundation.framework */; };
 		547C8DB2164CE63100FF00E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C8DB1164CE63100FF00E6 /* CoreGraphics.framework */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A89061F16520B6900709BBB /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		2A89062016520B6900709BBB /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		547C8DA9164CE63100FF00E6 /* flickrAPISample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flickrAPISample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		547C8DAD164CE63100FF00E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		547C8DAF164CE63100FF00E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,14 +94,16 @@
 			children = (
 				547C8DBC164CE63100FF00E6 /* AppDelegate.h */,
 				547C8DBD164CE63100FF00E6 /* AppDelegate.m */,
+				2A89061F16520B6900709BBB /* CustomCell.h */,
+				2A89062016520B6900709BBB /* CustomCell.m */,
+				547C8DCB164CE63200FF00E6 /* DetailViewController.h */,
+				547C8DCC164CE63200FF00E6 /* DetailViewController.m */,
 				547C8DC5164CE63200FF00E6 /* MainStoryboard.storyboard */,
 				547C8DC8164CE63200FF00E6 /* MasterViewController.h */,
 				547C8DC9164CE63200FF00E6 /* MasterViewController.m */,
-				547C8DCB164CE63200FF00E6 /* DetailViewController.h */,
-				547C8DCC164CE63200FF00E6 /* DetailViewController.m */,
-				547C8DB4164CE63100FF00E6 /* Supporting Files */,
 				547C8DE1164D16BA00FF00E6 /* Model.h */,
 				547C8DE2164D16BA00FF00E6 /* Model.m */,
+				547C8DB4164CE63100FF00E6 /* Supporting Files */,
 			);
 			path = flickrAPISample;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				547C8DCA164CE63200FF00E6 /* MasterViewController.m in Sources */,
 				547C8DCD164CE63200FF00E6 /* DetailViewController.m in Sources */,
 				547C8DE3164D16BA00FF00E6 /* Model.m in Sources */,
+				2A89062116520B6900709BBB /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +309,7 @@
 				547C8DD2164CE63200FF00E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
